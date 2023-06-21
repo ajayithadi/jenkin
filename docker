@@ -1,0 +1,92 @@
+DOCKER
+
+---------------------------------------------------------------------------------------------
+Go to Root Account
+$ sudo  su –
+
+Open browser (https://get.docker.com/) go to that link
+Copy the commands and paste it in terminal
+
+# curl -fsSL https://get.docker.com -o get-docker.sh ( this will download shell script in the machine)
+
+# sh get-docker.sh  ( This will execute the shell script, which will install docker )
+To start mysql  as container, open interactive terminal in it, create a sample table.
+
+
+
+# docker run  --name  mydb  -d  -e MYSQL_ROOT_PASSWORD=ajay007  mysql:5
+
+
+
+
+# docker container ls
+
+I want to open bash terminal of  mysql
+# docker  exec   -it  mydb  bash
+
+To connect to mysql database
+#  mysql  -u  root  -p 
+
+enter the password, we get mysql  prompt
+
+TO see list of databases
+> show databases;
+
+TO switch to a databse
+> use db_name
+> use mysql
+
+TO create emp tables and dept tables
+
+Go to below website
+
+https://justinsomnia.org/2009/04/the-emp-and-dept-tables-for-mysql/
+
+
+Copy tables and paste it in terminal
+
+show tables;
+---------------------------------------------------------------------------------------
+
+DOCKER - COMPOSE
+
+
+#    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# sudo chmod +x /usr/local/bin/docker-compose
+
+# docker pull httpd 
+
+# vim docker-compose.yml
+
+---
+version: '3'
+
+services:
+ mydb:
+  image: mysql:5
+  environment:
+   MYSQL_ROOT_PASSWORD: sunilsunil
+
+ apache:
+  image: httpd
+  ports:
+   - 6060:8080
+  links:
+   - mydb:mysql
+
+
+ php:
+  image: php
+  links:
+   - mydb:mysql
+   - apache:tomcat
+...
+
+
+
+# docker-compose up -d
+
+
+
+# docker ps -a
