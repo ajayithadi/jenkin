@@ -1,0 +1,26 @@
+11
+----------------------------------------------------------------------------------
+const {Builder, Browser, By, Key, until} = require('selenium-webdriver');
+(async function example() {
+ let driver = await new Builder().forBrowser(Browser.CHROME).build();
+  try {
+  await driver.get('https://www.google.com/ncr');
+   await driver.findElement(By.name('q')).sendKeys('sai spurthi institute of technology', Key.RETURN);
+   	await driver.wait(until.titleIs('sai spurthi institute of technology - Google Search'), 3000);
+  } finally {
+  await driver.quit();
+  } })();
+
+12
+
+-----------------------------------------------------------------------------------
+sudo su -
+ sudo apt install default-jre
+sudo apt install default-jdk
+sudo apt install docker
+sudo apt install docker-compose
+vim docker-compose.yml
+https://github.com/purnachand88/DockerSeleniumGrid/blob/main/SetupSeleniumGrid4.yml(code)
+docker-compose up
+docker ps-a
+-----------------------------------------------------------------------------------------------
