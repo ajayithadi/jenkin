@@ -1,0 +1,32 @@
+  KUBERNETS
+---------------------------------------------------------------------------------------------
+
+// For Docker Installation
+$ sudo apt-get update
+ $ sudo apt-get install docker.io -y
+$ sudo usermod -aG docker $USER && newgrp docker
+
+// For Minikube & Kubectl
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+ $ sudo install minikube-linux-amd64 /usr/local/bin/minikube 
+
+$ sudo snap install kubectl --classic
+$ minikube start --driver=docker
+// test the minikube status
+ $ minikube status
+
+Check the minikube using kubectl:
+kubectl get pods
+kubectl get svc
+---------------------------------------------------------------------------------------------
+	
+
+running app
+$ kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
+$ kubectl expose deployment hello-node --type=NodePort --port=8080
+$ kubectl get svc
+
+$ minikube ip
+$ curl 172.31.50.87:32256
+$ minikube service hello-node  
+---------------------------------------------------------------------------------------------
